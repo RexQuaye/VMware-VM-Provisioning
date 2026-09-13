@@ -1,70 +1,30 @@
-<h1>🛜Provision CentOS 9 VM for Dev Application Server</h1>
+<h1>VMware VM Provisioning</h1>
 
- ### [YouTube Demonstration](https://youtu.be/7eJexJVCqJo)
-
-<h2>Description</h2>
-I provisioned a new CentOS Stream 9 virtual machine to support a new product launch for the software development team, per Infrastructure Team request. Task included full VM configuration, OS installation, hostname setup, and inventory logging in AssetTiger.
-
-Objective: Learn how to provision and configure a Linux server from scratch in a virtualized environment.
-<br />
-
+<h1>Ticket #1 — Provision CentOS 9 VM</h1>
 
 <h2>Languages and Utilities Used</h2>
 
-- <b>None</b> 
+- <b>VMware vSphere Client (Web UI)</b>
+- <b>vCenter Server</b>
+- <b>CentOS 9</b>
 
+<h2>Environments Used</h2>
 
-<h2>Environments Used </h2>
+- <b>VMware vSphere / ESXi virtualization platform</b>
+- <b>CentOS 9 Linux (guest OS)</b>
+- <b>On-prem lab datacenter (vCenter datacenter: Procore-DC)</b>
 
-- <b>VMware vSphere Client (used to provision and configure the VM)<b>
-- <b>CentOS Stream 9 (guest OS)<b>
-- <b>AssetTiger (inventory management tool)<b>
+<h2>Project walk-through:</h2>
 
-<b>
-
-
-<h2>Program walk-through:</h2>
+**Objective:** Provision a new CentOS 9 virtual machine in vSphere to serve as a dev-app host, configured with the specified compute, storage, and network resources and ready for OS installation.
 
 <p align="center">
-Rex edit this to what you want it to say: <br/>
-
-<img height="80%" width="80%" alt="REX IG github logo" src="https://github.com/user-attachments/assets/1885ba97-2039-4f65-9bd9-939a05d566c5" />
-
-<br />
-
-<img src="https://i.imgur.com/62TgaWL.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+VM configuration review: <br/>
+<img src="images/ticket-01-vm-review.jpg" height="80%" width="80%" alt="VMware New Virtual Machine wizard, Ready to complete step, showing VM configuration summary"/>
 <br />
 <br />
-Select the disk:  <br/>
-<img src="https://i.imgur.com/tcTyMUE.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-<br />
-<br />
-Enter the number of passes: <br/>
-<img src="https://i.imgur.com/nCIbXbg.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-<br />
-<br />
-Confirm your selection:  <br/>
-<img src="https://i.imgur.com/cdFHBiU.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-<br />
-<br />
-Wait for process to complete (may take some time):  <br/>
-<img src="https://i.imgur.com/JL945Ga.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-<br />
-<br />
-Sanitization complete:  <br/>
-<img src="https://i.imgur.com/K71yaM2.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-<br />
-<br />
-Observe the wiped disk:  <br/>
-<img src="https://i.imgur.com/AeZkvFQ.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+Attaching the CentOS 9 ISO: <br/>
+<img src="images/ticket-01-iso-select.jpg" height="80%" width="80%" alt="VMware Select File dialog with CentOS9 ISO selected from the DS-01 datastore"/>
 </p>
 
-<!--
- ```diff
-- text in red
-+ text in green
-! text in orange
-# text in gray
-@@ text in purple (and bold)@@
-```
---!>
+**Solution:** Created the VM through the vSphere "New Virtual Machine" wizard — selected the compute resource and DS-01 datastore, configured 1 vCPU, 1 GB RAM, a single NIC on the YT-Intran-VLAN network, and a new 20 GB thin-provisioned disk — then attached the CentOS 9 installation ISO from the datastore so the VM could boot directly into the OS installer.
