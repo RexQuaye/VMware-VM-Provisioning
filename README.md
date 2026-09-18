@@ -51,23 +51,26 @@
 <br />
 <br />
 <img width="886" height="603" alt="ticket 1 select file CentOS" src="https://github.com/user-attachments/assets/4b74b50f-ad02-4081-8952-7342bc1e13c3" />
+</p>
 
 <br />
 <br />
 <br />
 
 <p align="center">
-<b>VM configuration review:<br/>
+<b>VM configuration review:</b>
+<br/>
 <img width="1166" height="772" alt="ticket_ 1 _ configure and deploy" src="https://github.com/user-attachments/assets/d73bcc3c-16ac-4871-8b7f-4bc4dbd2a3ea" />
-<br />
+</p>
 
 <br />
 <br />
 <br />
 <p align="center">
-<b>Work Added to the Asset Tiger inventory:<br/>
-<img width="1898" height="886" alt="Ticket 1 - asset tiger " src="https://github.com/user-attachments/assets/a442cc60-f716-4a41-a436-1ec7ea45bc8d" />
+<b>Work Added to the Asset Tiger inventory:</b>
+<br/>
+<img width="1898" height="886" alt="Ticket 1 - asset tiger" src="https://github.com/user-attachments/assets/a442cc60-f716-4a41-a436-1ec7ea45bc8d" />
 </p>
 <br />
 
-**Solution:** Created the VM in vSphere as `dev-app-[RQ].procore.prod1` on host `10.1.10.90`, using datastore `DS-01` for both the VM files and the 20 GB thin-provisioned disk. Configured 1 vCPU, 1 GB RAM, and a single NIC on the `YT-Intran-vlan` network per the requirements, then attached the CentOS Stream 9 ISO from the DS-01 ISO Images folder so the VM could boot directly into the installer. Hostname was set to match the VM name, and the completed asset was logged in AssetTiger with its owner, IP, MAC address, CPU/memory allocation, and OS install source recorded.
+<b><u>Solution:</u></b>  Created the VM in vSphere as `dev-app-rexq.procore.prod1` on host `10.1.10.90`, using datastore `DS-01` for both the VM files and the 20 GB thin-provisioned disk. Configured 1 vCPU, 1 GB RAM, and a single NIC on the `YT-Intran-vlan` network per the requirements, then attached the CentOS Stream 9 ISO from the DS-01 ISO Images folder so the VM could boot directly into the installer. Hostname was set to match the VM name, and the completed asset was logged in AssetTiger with its owner, IP, MAC address, CPU/memory allocation, and OS install source recorded.
