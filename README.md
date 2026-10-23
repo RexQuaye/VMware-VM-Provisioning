@@ -258,7 +258,8 @@
 <p align="center">
 <b>Enrolling the server as a FreeIPA client:</b>
 <br/>
-<img width="___" height="___" alt="ticket 12 ipa-client-install" src="PASTE_URL_5" />
+<img width="2215" height="1491" alt="image" src="https://github.com/user-attachments/assets/c3ad487b-fa75-4363-b2a2-45b159a19f7b" />
+
 </p>
 
 <br />
@@ -267,7 +268,8 @@
 <p align="center">
 <b>Preparing the DNS entries and NFS share mappings in vi:</b>
 <br/>
-<img width="___" height="___" alt="ticket 12 vi dns and nfs entries" src="PASTE_URL_6" />
+<img width="901" height="626" alt="image" src="https://github.com/user-attachments/assets/4b2ed4bb-c0fc-4978-b028-3f19ad016a86" />
+
 </p>
 
 <br />
@@ -276,7 +278,9 @@
 <p align="center">
 <b>Adding the DNS host entries to /etc/hosts:</b>
 <br/>
-<img width="___" height="___" alt="ticket 12 etc hosts entries" src="PASTE_URL_7" />
+<img width="1938" height="1630" alt="image" src="https://github.com/user-attachments/assets/250b3c16-faed-4ec4-ac0e-dfc805b521f9" />
+
+
 </p>
 
 <br />
@@ -285,7 +289,8 @@
 <p align="center">
 <b>Creating the NFS mount point directories:</b>
 <br/>
-<img width="___" height="___" alt="ticket 12 create nfs directories" src="PASTE_URL_8" />
+<img width="1944" height="977" alt="image" src="https://github.com/user-attachments/assets/5f2494c3-f220-4a49-bc59-6669be169938" />
+
 </p>
 
 <br />
@@ -294,7 +299,8 @@
 <p align="center">
 <b>Configuring the NFS shares in /etc/fstab:</b>
 <br/>
-<img width="___" height="___" alt="ticket 12 fstab nfs entries" src="PASTE_URL_9" />
+<img width="1957" height="1053" alt="image" src="https://github.com/user-attachments/assets/2a4b71f3-a772-405f-9643-04a573590929" />
+
 </p>
 
 <br />
@@ -303,7 +309,8 @@
 <p align="center">
 <b>Mounting the NFS shares:</b>
 <br/>
-<img width="___" height="___" alt="ticket 12 mount all" src="PASTE_URL_10" />
+<img width="2258" height="830" alt="image" src="https://github.com/user-attachments/assets/5d34fd65-06d8-403b-bce6-7094d5ddc538" />
+
 </p>
 
 <br />
@@ -312,8 +319,80 @@
 <p align="center">
 <b>Adding the procore user to the wheel group:</b>
 <br/>
-<img width="___" height="___" alt="ticket 12 procore wheel group" src="PASTE_URL_11" />
+<img width="2241" height="626" alt="image" src="https://github.com/user-attachments/assets/acd36b62-2032-442c-994e-9ea325b6dd02" />
+
 </p>
 <br />
 
 <b><u>Solution:</u></b>  Deployed `dev-performance-rxnq2.procore.prod1` in vSphere from the `NEW-YT-DEV-WEBSERVER-TEMPLATE` template using **New VM from This Template**, customizing the operating system and hardware and powering on after creation. Set the hostname to match the VM name and configured a static IP (`10.1.30.152/23`, gateway `10.1.30.1`, DNS `10.1.15.13` and `10.1.15.15`) through `nmtui` using the values from the IPAM sheet. Installed the `ipa-client` package and enrolled the server in the FreeIPA realm with `ipa-client-install --mkhomedir`. Repeated the DNS host entries in `/etc/hosts` and the NFS setup from Tickets 8-10 by creating the `/nfs/incoming/home`, `/nfs/incoming/vhosts`, and `/nfs/incoming/scripts` mount points, adding the three NFS shares to `/etc/fstab`, and mounting them with `mount -a`. Created the local user `procore`, added it to the `wheel` group, and verified the membership with `id procore`. The completed server was then logged in AssetTiger.
+
+
+
+
+<br />
+<br />
+
+---
+
+<br />
+<br />
+
+<a name="ticket-32"></a>
+<h1>Ticket #32 — VM Snapshots</h1>
+
+<h2>Languages and Utilities Used</h2>
+
+- <b>VMware vSphere Client (Web UI)</b>
+- <b>vCenter Server</b>
+- <b>VM Snapshots / Snapshot Manager</b>
+
+<h2>Environments Used</h2>
+
+- <b>VMware vSphere / ESXi virtualization platform</b>
+- <b>CentOS Linux (guest OS)</b>
+- <b>On-prem lab datacenter (vCenter datacenter: Procore-DC)</b>
+<br />
+<h2>Project walk-through:</h2>
+
+**Objective:** Strengthen Linux system administrator expertise through virtualization tasks using vSphere by protecting each server with a recoverable snapshot ahead of planned maintenance.
+
+**Requirements:**
+
+- Create a snapshot of every server ahead of a company-wide infrastructure maintenance window
+- Servers: `dev-app`, `dev-performance`, and `stage-web`
+
+<br />
+<br />
+<br />
+<p align="center">
+<b>Snapshot confirmed for dev-app-REXQ.procore.prod1:</b>
+<br/>
+<img width="1858" height="530" alt="image" src="https://github.com/user-attachments/assets/3c3cea42-1b4b-4855-ba38-ae3029e11089" />
+
+
+</p>
+
+<br />
+<br />
+<br />
+<p align="center">
+<b>Snapshot confirmed for dev-performance-RXNQ2.procore.prod1:</b>
+<br/>
+<img width="1877" height="522" alt="image" src="https://github.com/user-attachments/assets/97c52e4c-bdd6-4b95-8442-fa0dbe1586e7" />
+
+
+</p>
+
+<br />
+<br />
+<br />
+<p align="center">
+<b>Snapshot confirmed for stage-web-rexq3.procore.prod1:</b>
+<br/>
+<img width="1867" height="568" alt="image" src="https://github.com/user-attachments/assets/d45e742c-bf17-493b-8d4a-6e4e5245ca85" />
+
+
+</p>
+<br />
+
+<b><u>Solution:</u></b>  In vSphere Client, right-clicked each VM (`dev-app-REXQ.procore.prod1`, `dev-performance-RXNQ2.procore.prod1`, and `stage-web-rexq3.procore.prod1`), selected <b>Snapshots → Take Snapshot</b>, and gave each snapshot a name and description. Confirmed the tasks completed in the <b>Recent Tasks</b> panel. After the first snapshot, Snapshot Manager showed none, which was a stale view rather than a failed task. Reopening it through <b>Snapshots → Manage Snapshots</b> displayed it correctly. Verified all three snapshots in Snapshot Manager, each with a "You are here" marker confirming the VM's current state sits on that snapshot.
