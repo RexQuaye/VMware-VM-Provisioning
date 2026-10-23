@@ -5,7 +5,6 @@
 
 - 🖥️ **Ticket #1** — Provision CentOS 9 VM
 - 🗂️ **Ticket #2** — Create vSphere Resource Pool
-- 🔁 **Ticket #3** — Migrate VM to Resource Pool
 - 🌐 **Ticket #12** — Deploy Webserver from Template
 - 📸 **Ticket #32** — VM Snapshots
 - 🧠 **Ticket #55** — RAM Upgrade with Pre-Change VM Clone
@@ -72,5 +71,249 @@
 <img width="1898" height="886" alt="Ticket 1 - asset tiger" src="https://github.com/user-attachments/assets/a442cc60-f716-4a41-a436-1ec7ea45bc8d" />
 </p>
 <br />
-
 <b><u>Solution:</u></b>  Created the VM in vSphere as `dev-app-rexq.procore.prod1` on host `10.1.10.90`, using datastore `DS-01` for both the VM files and the 20 GB thin-provisioned disk. Configured 1 vCPU, 1 GB RAM, and a single NIC on the `YT-Intran-vlan` network per the requirements, then attached the CentOS Stream 9 ISO from the DS-01 ISO Images folder so the VM could boot directly into the installer. Hostname was set to match the VM name, and the completed asset was logged in AssetTiger with its owner, IP, MAC address, CPU/memory allocation, and OS install source recorded.
+<br />
+<br />
+
+---
+
+<br />
+<br />
+
+
+<h1>Ticket #2 — Create vSphere Resource Pool</h1>
+
+<h2>Languages and Utilities Used</h2>
+
+- <b>VMware vSphere Client (Web UI)</b>
+- <b>vCenter Server</b>
+
+<h2>Environments Used</h2>
+
+- <b>VMware vSphere / ESXi virtualization platform</b>
+- <b>On-prem lab datacenter (vCenter datacenter: Procore-DC)</b>
+<br />
+<h2>Project walk-through:</h2>
+
+**Objective:** Practice moving workloads between resource pools to build confidence in VM migration and compute resource balancing within vSphere.
+
+**Requirements:**
+
+- Create a resource pool named `RXQUAYE-CLUSTER` under the active Data Center, host `10.1.10.90`
+- Migrate an existing VM into the pool using **Change compute resource only**
+
+<br />
+<br />
+<br />
+<p align="center">
+<b>Select storage:</b>
+<br />
+<br />
+<img width="1160" height="759" alt="ticket _2_select storage " src="https://github.com/user-attachments/assets/e90c5050-8146-4801-8b25-d530acee5174" />
+</p>
+
+<br />
+<br />
+<br />
+<p align="center">
+<b>Selecting New Resource Pool:</b>
+<br/>
+<img width="725" height="495" alt="Ticket 2 - new resource pool" src="https://github.com/user-attachments/assets/957bf698-3421-4416-be6b-898101b3df77" />
+</p>
+
+<br />
+<br />
+<br />
+<p align="center">
+<b>Naming the resource pool:</b>
+<br/>
+<img width="950" height="839" alt="Ticket 2 - edit thhe username then -OK-" src="https://github.com/user-attachments/assets/6c191cce-ccaa-4231-b08a-597f53ced0c5" />
+</p>
+
+<br />
+<br />
+<br />
+<p align="center">
+<b>RXQUAYE-CLUSTER successfully created:</b>
+<br/>
+<img width="1155" height="431" alt="Ticket 2 - cluster created" src="https://github.com/user-attachments/assets/a2bf6401-b574-4189-abea-3e24e8cea8c6" />
+</p>
+
+<br />
+<br />
+<br />
+<p align="center">
+<b>Migrating dev-app-rexq.procore.prod1 to RXQUAYE-CLUSTER:</b>
+<br/>
+<img width="952" height="444" alt="Ticket 2 - migrate my vm" src="https://github.com/user-attachments/assets/8930c1ea-1dc0-4138-843f-2c969ef25a39" />
+</p>
+
+<br />
+<br />
+<br />
+<p align="center">
+<b>Migrated dev-app-rexq.procore.prod1 server to RXQUAYE-CLUSTER resource pool:</b>
+<br/>
+<img width="1193" height="707" alt="Ticket 2 - migrating my vm into RXQUAYE-CLUSTER" src="https://github.com/user-attachments/assets/d8c0ba11-c3af-4465-85b6-c7a24eb6bdcd" />
+</p>
+
+<br />
+<br />
+<br />
+<p align="center">
+<b>Confirming dev-app-rexq.procore.prod1 is in RXQUAYE-CLUSTER:</b>
+<br/>
+<img width="1062" height="518" alt="image" src="https://github.com/user-attachments/assets/4b0bf1a9-8282-4d8a-83fc-8290ccfc2741" />
+
+</p>
+<br />
+
+<b><u>Solution:</u></b>  In vSphere Client, right-clicked the Data Center object under host `10.1.10.90`, selected **New Resource Pool**, and named it `RXQUAYE-CLUSTER`, leaving default CPU/memory reservation settings in place. Then right-clicked the VM `dev-app-rexq.procore.prod1` and selected **Migrate**, choosing **Change compute resource only**, switched to the Resource Pools view, and selected `RXQUAYE-CLUSTER` as the destination to complete the migration. Verified successful placement by confirming `dev-app-rexq.procore.prod1` appeared correctly nested under `RXQUAYE-CLUSTER` in the Hosts and Clusters inventory tree.
+
+
+
+
+<br />
+<br />
+
+---
+
+<br />
+<br />
+
+<a name="ticket-12"></a>
+<h1>Ticket #12 — Deploy Dev Webserver from Template</h1>
+
+<h2>Languages and Utilities Used</h2>
+
+- <b>VMware vSphere Client (Web UI)</b>
+- <b>NetworkManager TUI (nmtui)</b>
+- <b>FreeIPA client (ipa-client-install)</b>
+- <b>NFS / fstab</b>
+- <b>Vim, Bash</b>
+
+<h2>Environments Used</h2>
+
+- <b>VMware vSphere / ESXi virtualization platform</b>
+- <b>CentOS Linux (guest OS, deployed from a template)</b>
+- <b>On-prem lab datacenter (vCenter datacenter: Procore-DC)</b>
+<br />
+<h2>Project walk-through:</h2>
+
+**Objective:** Enhance Linux system administration skills through virtualization using vSphere by deploying a development web server from a configuration template and updating the server-specific settings.
+
+**Requirements:**
+
+- VM Name: `dev-performance-[initials].procore.prod1`
+- Deploy from `NEW-YT-DEV-WEBSERVER-TEMPLATE`
+- Static network connection
+- `ipa-client` package installed and enrolled
+- DNS and NFS mount configuration (per Tickets 8-10)
+- Local user `procore` added to the `wheel` group
+- Asset inventory updated
+
+<br />
+<br />
+<br />
+<p align="center">
+<b>Locating the NEW-YT-DEV-WEBSERVER-TEMPLATE in vSphere:</b>
+<br/>
+<img width="1287" height="639" alt="Ticket 12 template location" src="https://github.com/user-attachments/assets/419bcf49-af85-49ac-a93e-09402a43be5b" />
+
+</p>
+
+<br />
+<br />
+<br />
+<p align="center">
+<b>Deploying a new VM from the template:</b>
+<br/>
+<img width="1108" height="645" alt="Ticket 12 template build  2" src="https://github.com/user-attachments/assets/704cc4ff-f7aa-47ab-9cef-f02345f2e297" />
+
+</p>
+
+<br />
+<br />
+<br />
+<p align="center">
+<b>Setting the hostname to match the VM name:</b>
+<br/>
+<img width="1229" height="718" alt="Ticket 12 setting host name " src="https://github.com/user-attachments/assets/5b731cb1-7431-49fe-b1f7-19ec2cdd6b07" />
+
+</p>
+
+<br />
+<br />
+<br />
+<p align="center">
+<b>Configuring the static IP, gateway, and DNS servers in nmtui:</b>
+<br/>
+<img width="1041" height="541" alt="image" src="https://github.com/user-attachments/assets/b59b326b-1f77-4677-b97a-a4453ed8dafc" />
+
+</p>
+
+<br />
+<br />
+<br />
+<p align="center">
+<b>Enrolling the server as a FreeIPA client:</b>
+<br/>
+<img width="___" height="___" alt="ticket 12 ipa-client-install" src="PASTE_URL_5" />
+</p>
+
+<br />
+<br />
+<br />
+<p align="center">
+<b>Preparing the DNS entries and NFS share mappings in vi:</b>
+<br/>
+<img width="___" height="___" alt="ticket 12 vi dns and nfs entries" src="PASTE_URL_6" />
+</p>
+
+<br />
+<br />
+<br />
+<p align="center">
+<b>Adding the DNS host entries to /etc/hosts:</b>
+<br/>
+<img width="___" height="___" alt="ticket 12 etc hosts entries" src="PASTE_URL_7" />
+</p>
+
+<br />
+<br />
+<br />
+<p align="center">
+<b>Creating the NFS mount point directories:</b>
+<br/>
+<img width="___" height="___" alt="ticket 12 create nfs directories" src="PASTE_URL_8" />
+</p>
+
+<br />
+<br />
+<br />
+<p align="center">
+<b>Configuring the NFS shares in /etc/fstab:</b>
+<br/>
+<img width="___" height="___" alt="ticket 12 fstab nfs entries" src="PASTE_URL_9" />
+</p>
+
+<br />
+<br />
+<br />
+<p align="center">
+<b>Mounting the NFS shares:</b>
+<br/>
+<img width="___" height="___" alt="ticket 12 mount all" src="PASTE_URL_10" />
+</p>
+
+<br />
+<br />
+<br />
+<p align="center">
+<b>Adding the procore user to the wheel group:</b>
+<br/>
+<img width="___" height="___" alt="ticket 12 procore wheel group" src="PASTE_URL_11" />
+</p>
+<br />
+
+<b><u>Solution:</u></b>  Deployed `dev-performance-rxnq2.procore.prod1` in vSphere from the `NEW-YT-DEV-WEBSERVER-TEMPLATE` template using **New VM from This Template**, customizing the operating system and hardware and powering on after creation. Set the hostname to match the VM name and configured a static IP (`10.1.30.152/23`, gateway `10.1.30.1`, DNS `10.1.15.13` and `10.1.15.15`) through `nmtui` using the values from the IPAM sheet. Installed the `ipa-client` package and enrolled the server in the FreeIPA realm with `ipa-client-install --mkhomedir`. Repeated the DNS host entries in `/etc/hosts` and the NFS setup from Tickets 8-10 by creating the `/nfs/incoming/home`, `/nfs/incoming/vhosts`, and `/nfs/incoming/scripts` mount points, adding the three NFS shares to `/etc/fstab`, and mounting them with `mount -a`. Created the local user `procore`, added it to the `wheel` group, and verified the membership with `id procore`. The completed server was then logged in AssetTiger.
