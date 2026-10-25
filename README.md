@@ -3,11 +3,11 @@
 
 ### 📋 Tickets Covered in This Repository
 
-- 🖥️ **Ticket #1** — Provision CentOS 9 VM
-- 🗂️ **Ticket #2** — Create vSphere Resource Pool
-- 🌐 **Ticket #12** — Deploy Webserver from Template
-- 📸 **Ticket #32** — VM Snapshots
-- 🧠 **Ticket #55** — RAM Upgrade with Pre-Change VM Clone
+- 🖥️ [**Ticket #1** — Provision CentOS 9 VM](#ticket-1)
+- 🗂️ [**Ticket #2** — Create vSphere Resource Pool](#ticket-2)
+- 🌐 [**Ticket #12** — Deploy Webserver from Template](#ticket-12)
+- 📸 [**Ticket #32** — VM Snapshots](#ticket-32)
+- 🧠 [**Ticket #55** — RAM Upgrade with Pre-Change VM Clone](#ticket-55)
 
 <br />
 
