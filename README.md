@@ -413,10 +413,13 @@
 <br />
 <br />
 
+<p align="right"><a href="#top">⬆ Back to top</a></p>
+
 ---
 
 <br />
 <br />
+
 
 <a name="ticket-55"></a>
 <h1>Ticket #55 — RAM Upgrade with Pre-Change VM Clone</h1>
