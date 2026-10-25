@@ -12,6 +12,7 @@
 <br />
 
 
+<a name="ticket-1"></a>
 <h1>Ticket #1 — Provision CentOS 9 VM</h1>
 
 <h2>Languages and Utilities Used</h2>
@@ -80,7 +81,7 @@
 <br />
 <br />
 
-
+<a name="ticket-2"></a>
 <h1>Ticket #2 — Create vSphere Resource Pool</h1>
 
 <h2>Languages and Utilities Used</h2>
@@ -181,6 +182,7 @@
 <br />
 <br />
 
+<a name="ticket-12"></a>
 <a name="ticket-12"></a>
 <h1>Ticket #12 — Deploy Dev Webserver from Template</h1>
 
@@ -338,6 +340,7 @@
 <br />
 
 <a name="ticket-32"></a>
+<a name="ticket-32"></a>
 <h1>Ticket #32 — VM Snapshots</h1>
 
 <h2>Languages and Utilities Used</h2>
@@ -396,3 +399,155 @@
 <br />
 
 <b><u>Solution:</u></b>  In vSphere Client, right-clicked each VM (`dev-app-REXQ.procore.prod1`, `dev-performance-RXNQ2.procore.prod1`, and `stage-web-rexq3.procore.prod1`), selected <b>Snapshots → Take Snapshot</b>, and gave each snapshot a name and description. Confirmed the tasks completed in the <b>Recent Tasks</b> panel. After the first snapshot, Snapshot Manager showed none, which was a stale view rather than a failed task. Reopening it through <b>Snapshots → Manage Snapshots</b> displayed it correctly. Verified all three snapshots in Snapshot Manager, each with a "You are here" marker confirming the VM's current state sits on that snapshot.
+
+
+
+
+<br />
+<br />
+
+---
+
+<br />
+<br />
+
+<a name="ticket-55"></a>
+<h1>Ticket #55 — RAM Upgrade with Pre-Change VM Clone</h1>
+
+<h2>Languages and Utilities Used</h2>
+
+- <b>VMware vSphere Client (Web UI)</b>
+- <b>vCenter Server</b>
+- <b>VM Cloning / Edit Settings</b>
+
+<h2>Environments Used</h2>
+
+- <b>VMware vSphere / ESXi virtualization platform</b>
+- <b>CentOS Linux (guest OS)</b>
+- <b>On-prem lab datacenter (vCenter datacenter: Procore-DC)</b>
+<br />
+<h2>Project walk-through:</h2>
+
+**Objective:** Learn how to configure resources of a Linux server in a virtualized environment by increasing a server's memory safely, with a backup clone created before any change.
+
+**Requirements:**
+
+- VM: `dev-app`
+- Increase RAM by 500 MB to support increased user demand
+- Create a clone of the `dev-app` server before making changes
+
+<br />
+<br />
+<br />
+<p align="center">
+<b>Opening the Actions menu for dev-app-REXQ.procore.prod1:</b>
+<br/>
+<img width="690" height="959" alt="image" src="https://github.com/user-attachments/assets/b6f5cf0c-d95e-4672-9296-340bf5d8f51d" />
+
+</p>
+
+<br />
+<br />
+<br />
+<p align="center">
+<b>Selecting Clone → Clone to Virtual Machine:</b>
+<br/>
+<img width="1113" height="550" alt="image" src="https://github.com/user-attachments/assets/36ef8997-f884-421a-ad7c-d69662b0a9de" />
+
+</p>
+
+<br />
+<br />
+<br />
+<p align="center">
+<b>Naming the clone dev-app-rexq-clone1.procore.prod1:</b>
+<br/>
+<img width="836" height="289" alt="image" src="https://github.com/user-attachments/assets/9e1f38e5-8710-4c58-bdc7-cb5a741f49fb" />
+
+</p>
+
+<br />
+<br />
+<br />
+<p align="center">
+<b>Selecting the compute resource (host 10.1.10.90):</b>
+<br/>
+<img width="763" height="289" alt="image" src="https://github.com/user-attachments/assets/00cad7c7-cd61-4c97-913d-89addfb7701d" />
+
+</p>
+
+<br />
+<br />
+<br />
+<p align="center">
+<b>Selecting the DS-01 datastore:</b>
+<br/>
+<img width="923" height="373" alt="image" src="https://github.com/user-attachments/assets/1aa3894e-8b4f-43fa-8f83-ff3056a90f41" />
+
+</p>
+
+<br />
+<br />
+<br />
+<p align="center">
+<b>Selecting the clone options:</b>
+<br/>
+<img width="801" height="283" alt="image" src="https://github.com/user-attachments/assets/243ce1bd-64e9-423c-8b8c-797872a1c2f8" />
+
+</p>
+
+<br />
+<br />
+<br />
+<p align="center">
+<b>Reviewing the clone settings before finishing:</b>
+<br/>
+<img width="1126" height="739" alt="image" src="https://github.com/user-attachments/assets/3a35c7a6-648c-4d44-ac99-0a65903eb983" />
+
+</p>
+
+<br />
+<br />
+<br />
+<p align="center">
+<b>Migrating the clone: Change compute resource only:</b>
+<br/>
+<img width="797" height="715" alt="image" src="https://github.com/user-attachments/assets/ea6f37f1-c69c-44e1-854b-8dbeaf95c7a2" />
+
+</p>
+
+<br />
+<br />
+<br />
+<p align="center">
+<b>Placing the clone in the RXQUAYE-CLUSTER resource pool:</b>
+<br/>
+<img width="789" height="708" alt="image" src="https://github.com/user-attachments/assets/c6468535-a694-4b9c-ae4f-ef140e7a2f31" />
+
+</p>
+
+<br />
+<br />
+<br />
+<p align="center">
+<b>Increasing dev-app memory to 1524 MB in Edit Settings:</b>
+<br/>
+<img width="906" height="763" alt="image" src="https://github.com/user-attachments/assets/c788d388-6392-45b1-b2a0-b1c5f8aa619a" />
+
+</p>
+
+<br />
+<br />
+<br />
+<p align="center">
+<b>Verifying the new memory on the Summary tab:</b>
+<br/>
+<img width="1926" height="1451" alt="image" src="https://github.com/user-attachments/assets/19dab03d-42dc-4f25-be5c-daa1c01b0f04" />
+
+</p>
+<br />
+
+<b><u>Solution:</u></b>  In vSphere Client, right-clicked `dev-app-REXQ.procore.prod1` and selected <b>Clone → Clone to Virtual Machine</b>, naming the clone `dev-app-rexq-clone1.procore.prod1` and placing it on host `10.1.10.90` with datastore `DS-01` and the same disk format as the source, so a safe backup existed before any change. The clone powered on automatically with the same IP address as the original, so I powered it off to avoid a network conflict, then used <b>Migrate → Change compute resource only</b> to place it in the `RXQUAYE-CLUSTER` resource pool. Because memory could not be edited while the VM was running, I powered off `dev-app-REXQ.procore.prod1`, opened <b>Edit Settings</b>, and increased Memory from 1 GB to 1524 MB (+500 MB), correcting an initial entry made in the Reservation field with the unit left on GB. Powered the VM back on and verified the change on the Summary tab, which shows 1.49 GB of memory.
+
+
+
