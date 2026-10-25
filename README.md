@@ -73,8 +73,11 @@
 </p>
 <br />
 <b><u>Solution:</u></b>  Created the VM in vSphere as `dev-app-rexq.procore.prod1` on host `10.1.10.90`, using datastore `DS-01` for both the VM files and the 20 GB thin-provisioned disk. Configured 1 vCPU, 1 GB RAM, and a single NIC on the `YT-Intran-vlan` network per the requirements, then attached the CentOS Stream 9 ISO from the DS-01 ISO Images folder so the VM could boot directly into the installer. Hostname was set to match the VM name, and the completed asset was logged in AssetTiger with its owner, IP, MAC address, CPU/memory allocation, and OS install source recorded.
+
 <br />
 <br />
+
+<p align="right"><a href="#top">⬆ Back to top</a></p>
 
 ---
 
@@ -176,6 +179,8 @@
 
 <br />
 <br />
+
+<p align="right"><a href="#top">⬆ Back to top</a></p>
 
 ---
 
@@ -333,6 +338,8 @@
 
 <br />
 <br />
+
+<p align="right"><a href="#top">⬆ Back to top</a></p>
 
 ---
 
@@ -549,5 +556,11 @@
 
 <b><u>Solution:</u></b>  In vSphere Client, right-clicked `dev-app-REXQ.procore.prod1` and selected <b>Clone → Clone to Virtual Machine</b>, naming the clone `dev-app-rexq-clone1.procore.prod1` and placing it on host `10.1.10.90` with datastore `DS-01` and the same disk format as the source, so a safe backup existed before any change. The clone powered on automatically with the same IP address as the original, so I powered it off to avoid a network conflict, then used <b>Migrate → Change compute resource only</b> to place it in the `RXQUAYE-CLUSTER` resource pool. Because memory could not be edited while the VM was running, I powered off `dev-app-REXQ.procore.prod1`, opened <b>Edit Settings</b>, and increased Memory from 1 GB to 1524 MB (+500 MB), correcting an initial entry made in the Reservation field with the unit left on GB. Powered the VM back on and verified the change on the Summary tab, which shows 1.49 GB of memory.
 
+<br />
+<br />
+
+<p align="right"><a href="#top">⬆ Back to top</a></p>
+
+---
 
 
