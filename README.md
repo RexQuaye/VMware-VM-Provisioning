@@ -10,7 +10,6 @@
 - 🧠 [**Ticket #55** — RAM Upgrade with Pre-Change VM Clone](#ticket-55)
 
 <br />
-
 <br />
 
 <p align="right"><a href="https://github.com/RexQuaye">🏠 Back to home page</a></p>
